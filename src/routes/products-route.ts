@@ -4,8 +4,7 @@ import {ProductsController} from "../controller/products-controller"
 const productsRouter = Router()
 const productsController = new ProductsController
 
-productsRouter.get("/", productsController.index, (request, response) => {
-    console.log(`Requisição recebida em rota: ${request.url}`);
-})
+productsRouter.get("/", productsController.index)
+productsRouter.post("/", productsController.create)
 
 export {productsRouter}
