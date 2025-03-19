@@ -1,5 +1,4 @@
 type ProductsRepository = {
-
     name: string,
     price: number,
     created_at: number,
