@@ -1,6 +1,6 @@
 # 🚀 API para Gerenciamento de Mesas de um Restaurante
 
-Esta API foi criada para gerenciar mesas de um restaurante, permitindo o controle de reservas, status das mesas e pedidos. O projeto serve como aprendizado para desenvolvimento com Node.js e Express.
+Esta API foi criada para gerenciar mesas de um restaurante, permitindo o controle de reservas, status das mesas e pedidos. Desenvolvinento com Node.js e Express.
 
 ## 📌 Tecnologias utilizadas
 
@@ -9,6 +9,7 @@ Esta API foi criada para gerenciar mesas de um restaurante, permitindo o control
 - **TypeScript** - Superset do JavaScript para tipagem estática
 - **SQLite** - Banco de dados leve e integrado
 - **Knex.js** - Query Builder para interação com o banco de dados
+- **Zod** - Biblioteca para validação de dados
 
 ---
 
@@ -37,4 +38,131 @@ npm run dev
 ```
 A API estará disponível em **`http://localhost:3333`**.
 
-# api-restaurante
+---
+
+## 📌 Endpoints da API
+
+### 📌 **1. Gerenciamento de Mesas** (`/tables`)
+
+#### 📌 Listar todas as mesas
+**GET** `/tables`
+```json
+Resposta:
+[
+  { "id": 1, "table_number": 10 },
+  { "id": 2, "table_number": 5 }
+]
+```
+
+#### 📌 Criar uma nova mesa
+**POST** `/tables`
+```json
+Corpo da requisição:
+{
+  "table_number": 12
+}
+```
+
+#### 📌 Deletar uma mesa
+**DELETE** `/tables/:id`
+```json
+Resposta:
+{}
+```
+
+---
+
+### 📌 **2. Gerenciamento de Sessões de Mesas** (`/tables_sessions`)
+
+#### 📌 Criar uma nova sessão de mesa
+**POST** `/tables_sessions`
+```json
+Corpo da requisição:
+{
+  "table_id": 1
+}
+```
+
+#### 📌 Listar todas as sessões
+**GET** `/tables_sessions`
+```json
+Resposta:
+[
+  { "id": 1, "table_id": 1, "opened_at": "2024-03-19T12:00:00Z", "closed_at": null }
+]
+```
+
+#### 📌 Fechar uma sessão de mesa
+**PUT** `/tables_sessions/:id`
+```json
+Resposta:
+{}
+```
+
+---
+
+### 📌 **3. Gerenciamento de Produtos** (`/products`)
+
+#### 📌 Listar produtos
+**GET** `/products`
+```json
+Resposta:
+[
+  { "id": 1, "name": "Pizza Margherita", "price": 20.0 },
+  { "id": 2, "name": "Coca-Cola", "price": 5.0 }
+]
+```
+
+#### 📌 Criar um produto
+**POST** `/products`
+```json
+Corpo da requisição:
+{
+  "name": "Pizza Quatro Queijos",
+  "price": 25.0
+}
+```
+
+#### 📌 Atualizar um produto
+**PUT** `/products/:id`
+```json
+Corpo da requisição:
+{
+  "name": "Pizza Pepperoni",
+  "price": 30.0
+}
+```
+
+#### 📌 Deletar um produto
+**DELETE** `/products/:id`
+```json
+Resposta:
+{}
+```
+
+---
+
+## 📌 Tratamento de Erros
+
+A API usa **Zod** para validação de dados e um middleware de erros personalizado para padronizar respostas de erro.
+
+Exemplo de resposta de erro:
+```json
+{
+  "error": "Invalid table ID format"
+}
+```
+
+Caso ocorra um erro inesperado, a API retornará um erro 500:
+```json
+{
+  "error": "Internal Server Error"
+}
+```
+
+---
+
+## 📌 Conclusão
+
+Esta API fornece funcionalidades essenciais para o gerenciamento de um restaurante, incluindo o controle de mesas, sessões e produtos. Ela pode ser facilmente pagamentos e integração com frontend. 🚀
+
