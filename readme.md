@@ -1,6 +1,6 @@
 # 🚀 API para Gerenciamento de Mesas de um Restaurante
 
-Esta API foi criada para gerenciar mesas de um restaurante, permitindo o controle de reservas, status das mesas e pedidos. Desenvolvinento com Node.js e Express.
+Esta API foi criada para gerenciar mesas de um restaurante, permitindo o controle de reservas, status das mesas e pedidos. Desenvolvimento com Node.js e Express.
 
 ## 📌 Tecnologias utilizadas
 
@@ -142,6 +142,55 @@ Resposta:
 
 ---
 
+### 📌 **4. Gerenciamento de Pedidos** (`/orders`)
+
+#### 📌 Criar pedido
+**POST** `/orders`
+```json
+Corpo da requisição:
+{
+  "table_session_id": 1,
+  "product_id": 2,
+  "quantity": 3
+}
+```
+**Resposta:**
+```json
+Status: 201 Created
+{}
+```
+
+#### 📌 Listar pedidos por sessão
+**GET** `/orders/:table_session_id`
+```json
+Resposta:
+[
+  {
+    "id": 1,
+    "table_session_id": 1,
+    "product_id": 2,
+    "name": "Coca-Cola",
+    "price": 5.0,
+    "quantity": 3,
+    "total": 15.0,
+    "created_at": "2024-03-21T12:00:00Z",
+    "update_at": null
+  }
+]
+```
+
+#### 📌 Mostrar totais da sessão
+**GET** `/orders/total/:table_session_id`
+```json
+Resposta:
+{
+  "Quantity": 3,
+  "Total": 15.0
+}
+```
+
+---
+
 ## 📌 Tratamento de Erros
 
 A API usa **Zod** para validação de dados e um middleware de erros personalizado para padronizar respostas de erro.
@@ -164,5 +213,7 @@ Caso ocorra um erro inesperado, a API retornará um erro 500:
 
 ## 📌 Conclusão
 
-Esta API fornece funcionalidades essenciais para o gerenciamento de um restaurante, incluindo o controle de mesas, sessões e produtos. Ela pode ser facilmente pagamentos e integração com frontend. 🚀
+Esta API fornece funcionalidades essenciais para o gerenciamento de um restaurante, incluindo o controle de mesas, sessões e produtos. Ela pode ser facilmente expandida para incluir pagamentos e integração com frontend. 🚀
+
+No repositório existe um arquivo chamado **`request_insomnia`** com todas as requisições prontas para testes na ferramenta [Insomnia](https://insomnia.rest).
 
